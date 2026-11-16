@@ -74,6 +74,30 @@
   .nav li a:hover { border-bottom-color: var(--line); }
   .nav li a[aria-current="true"] { border-bottom-color: var(--gorse); }
 
+  .nav-toggle { display: none; }
+  .nav-lang { display: block; line-height: 0; margin-left: -0.5rem; }
+  @media (max-width: 760px) {
+    .nav-inner { position: relative; gap: 0.75rem; }
+    .nav-lang { margin-left: auto; }
+    .nav-toggle {
+      display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
+      width: 2.75rem; height: 2.75rem; padding: 0 0.7rem;
+      background: transparent; border: 2px solid var(--flint); border-radius: 8px; cursor: pointer;
+    }
+    .nav-toggle span { display: block; height: 2px; background: var(--flint); border-radius: 2px; transition: transform .2s, opacity .2s; }
+    .nav.open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+    .nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav ul {
+      display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0;
+      flex-direction: column; gap: 0; overflow: visible;
+      padding: 0.4rem 1.5rem 0.9rem; background: var(--chalk);
+      border-bottom: 1px solid var(--line); box-shadow: 0 12px 20px -14px rgba(39, 51, 58, 0.5);
+    }
+    .nav.open ul { display: flex; }
+    .nav li a { padding: 0.8rem 0; font-size: 1.05rem; }
+  }
+
   /* ---------- Hero ---------- */
   .hero {
     position: relative; overflow: hidden;
@@ -279,15 +303,16 @@
 <nav class="nav" aria-label="Seções da página">
   <div class="nav-inner">
     <a class="brand" href="#top">Ari &amp; Rob</a>
-    <ul>
+    <ul id="nav-menu">
       <li><a href="#location">Local</a></li>
       <li><a href="#getting-there">Como chegar</a></li>
       <li><a href="#things-to-do">O que fazer</a></li>
       <li><a href="#stay">Onde ficar</a></li>
       <li><a href="#dress-gifts">Detalhes</a></li>
       <li><a href="#rsvp">Confirmar presença</a></li>
-      <li><a href="index.html" hreflang="en" lang="en" aria-label="English" title="English"><svg width="26" height="18" viewBox="0 0 60 40" aria-hidden="true" focusable="false" style="display:block; margin-top:4px; border-radius:2px; box-shadow:0 0 0 1px rgba(39,51,58,.3)"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="12"/><path d="M30 0V40M0 20H60" stroke="#C8102E" stroke-width="7"/></svg></a></li>
     </ul>
+    <a class="nav-lang" href="index.html" hreflang="en" lang="en" aria-label="English" title="English"><svg width="26" height="18" viewBox="0 0 60 40" aria-hidden="true" focusable="false" style="display:block; border-radius:2px; box-shadow:0 0 0 1px rgba(39,51,58,.3)"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="12"/><path d="M30 0V40M0 20H60" stroke="#C8102E" stroke-width="7"/></svg></a>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -661,6 +686,20 @@
 </footer>
 
 <script>
+  // Collapsible menu on small screens
+  (function () {
+    var nav = document.querySelector('.nav');
+    var btn = nav.querySelector('.nav-toggle');
+    function setOpen(open) {
+      nav.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    btn.addEventListener('click', function () { setOpen(!nav.classList.contains('open')); });
+    nav.querySelectorAll('li a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+    document.addEventListener('click', function (e) { if (!nav.contains(e.target)) setOpen(false); });
+  })();
+
   // Highlight the current section in the menu
   (function () {
     var links = Array.prototype.slice.call(document.querySelectorAll('.nav li a'));
