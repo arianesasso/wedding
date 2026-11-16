@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ari &amp; Rob – Wedding celebration</title>
+<meta name="description" content="Everything you need for our wedding celebration: venue, dress code, travel, places to stay and RSVP.">
+<meta name="robots" content="noindex, nofollow"><!-- Keeps the page out of search results. Delete this line if you want it findable. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+
+<!--
+  HOW TO EDIT
+  1. Search this file for square brackets, like [Venue name]. Each one is something to replace.
+  2. Put your photos in an /images folder next to this file, named as in the <img> tags
+     (venue-1.jpg, venue-2.jpg, venue-3.jpg). Until they exist, a grey-green placeholder shows.
+  3. RSVP: see the comment above the <form> near the bottom.
+-->
+
+<style>
+  :root {
+    --chalk: #F5F6F1;
+    --mist:  #DCE5E1;
+    --down:  #3D5A45;
+    --flint: #27333A;
+    --gorse: #E2B22E;
+    --line:  #C3CFC8;
+    --serif: "Young Serif", Georgia, "Times New Roman", serif;
+    --sans:  "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+  body {
+    margin: 0;
+    font: 400 1.0625rem/1.65 var(--sans);
+    color: var(--flint);
+    background: var(--chalk);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-underline-offset: 0.2em; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 3px solid var(--gorse);
+    outline-offset: 2px;
+  }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.1; margin: 0; }
+  h2 { font-size: clamp(2rem, 4.5vw, 2.85rem); }
+  h3 { font-size: 1.35rem; margin-bottom: 0.4rem; }
+  p { margin: 0 0 1rem; max-width: 62ch; }
+
+  /* ---------- Navigation ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--chalk);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1080px; margin: 0 auto; padding: 0 1.5rem;
+    display: flex; align-items: center; gap: 2rem; height: 3.5rem;
+  }
+  .brand { font-family: var(--serif); font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
+  .nav ul {
+    list-style: none; margin: 0 0 0 auto; padding: 0;
+    display: flex; gap: 1.5rem; overflow-x: auto; scrollbar-width: none;
+  }
+  .nav ul::-webkit-scrollbar { display: none; }
+  .nav li a {
+    display: block; padding: 0.95rem 0; text-decoration: none; white-space: nowrap;
+    font-size: 0.95rem; font-weight: 500;
+    border-bottom: 3px solid transparent;
+  }
+  .nav li a:hover { border-bottom-color: var(--line); }
+  .nav li a[aria-current="true"] { border-bottom-color: var(--gorse); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; overflow: hidden;
+    background: var(--mist);
+    min-height: min(46rem, calc(100svh - 3.5rem));
+    display: flex; flex-direction: column;
+  }
+  .hero-text {
+    position: relative; z-index: 2;
+    max-width: 1080px; width: 100%; margin: 0 auto;
+    padding: clamp(3rem, 9vh, 6rem) 1.5rem 0;
+  }
+  .hero h1 { font-size: clamp(3.2rem, 11vw, 8rem); letter-spacing: -0.01em; }
+  .hero-meta { font-size: clamp(1.1rem, 2.2vw, 1.4rem); margin: 1.5rem 0 2rem; max-width: 34ch; }
+  .hero-meta strong { font-weight: 600; }
+  .button {
+    display: inline-block; padding: 0.85rem 1.6rem;
+    background: var(--gorse); color: var(--flint);
+    font: 600 1rem var(--sans); text-decoration: none;
+    border: 2px solid var(--flint); border-radius: 999px; cursor: pointer;
+  }
+  .button:hover { background: var(--flint); color: var(--chalk); }
+  .hills { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: auto; z-index: 1; }
+  .sun-portrait {
+    --d: clamp(9rem, 21vw, 18rem);
+    position: absolute; z-index: 0;
+    width: var(--d); height: var(--d);
+    left: calc(72% - var(--d) / 2);
+    bottom: calc(18.75vw - var(--d) / 2);
+    border-radius: 50%; overflow: hidden;
+    background: var(--gorse); border: 8px solid var(--gorse);
+    animation: rise 2.4s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .sun-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 28% 45%; border-radius: 50%; }
+  @media (max-width: 640px) {
+    .hero { min-height: 36rem; }
+    .sun-portrait { --d: 10rem; bottom: calc(18.75vw - var(--d) / 2 + 1rem); }
+  }
+  .sun { transform-box: fill-box; animation: rise 2.4s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes rise { from { transform: translateY(110px); } to { transform: translateY(0); } }
+
+  /* ---------- Sections ---------- */
+  section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+  section.tint { background: var(--mist); }
+  .wrap {
+    max-width: 1080px; margin: 0 auto; padding: 0 1.5rem;
+    display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 2rem 4rem;
+  }
+  .intro p { margin-top: 1rem; color: #43525A; }
+  @media (max-width: 800px) { .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Welcome: one arch-framed photo beside a short note */
+  #welcome .wrap { align-items: center; }
+  .arch { margin: 0; max-width: 20rem; width: 100%; }
+  .arch img {
+    display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 40%;
+    border-radius: 999px 999px 0 0; background: #C9D6CE;
+  }
+  .welcome-text p { font-size: 1.2rem; max-width: 34rem; }
+  .welcome-text h2 { margin-bottom: 1rem; }
+  @media (max-width: 800px) { .welcome-text { order: -1; } .arch { max-width: 16rem; } }
+
+  /* Weekend itinerary */
+  .days { list-style: none; margin: 0; padding: 0; max-width: 36rem; border-top: 1px solid var(--flint); }
+  .days li {
+    display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 0.25rem 1.5rem;
+    padding: 1rem 0; border-bottom: 1px solid var(--line);
+  }
+  .days .when strong { display: block; font: 400 1.25rem/1.2 var(--serif); }
+  .days .when span { font-size: 0.95rem; color: #43525A; }
+  .days p { margin: 0; font-size: 1.05rem; }
+  .days li.wedding { background: var(--mist); padding-left: 1rem; padding-right: 1rem; margin-left: -1rem; margin-right: -1rem; }
+  @media (max-width: 480px) {
+    .days li { grid-template-columns: minmax(0, 1fr); }
+    .days li.wedding { margin-left: -0.75rem; margin-right: -0.75rem; padding-left: 0.75rem; padding-right: 0.75rem; }
+  }
+
+  /* Two-photo rows used in Dress code and Things to do */
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0 0 1.75rem; }
+  .pair .photo { aspect-ratio: 4 / 5; }
+  .banner { margin: 0 0 1.75rem; }
+  .banner .photo { aspect-ratio: 16 / 7; }
+  .banner-tall { margin: 0 0 1.75rem; max-width: 22rem; }
+  .banner-tall .photo { aspect-ratio: 4 / 5; }
+  .bubble {
+    margin: 0 auto 1.75rem; width: clamp(14rem, 32vw, 20rem); aspect-ratio: 1;
+    border-radius: 50%; overflow: hidden; border: 8px solid var(--gorse); background: #C9D6CE;
+  }
+  .bubble img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  mark { background: var(--gorse); color: var(--flint); padding: 0.05em 0.35em; border-radius: 3px; }
+  .note {
+    display: flex; align-items: center; gap: 0.9rem;
+    margin: 2.25rem 0 1.5rem; padding: 0.85rem 1.3rem;
+    background: var(--mist); border: 1.5px solid var(--down); border-radius: 999px;
+  }
+  .note svg { flex: none; }
+  .note p { margin: 0; font-weight: 600; }
+  @media (max-width: 480px) { .note { border-radius: 14px; } }
+  @media (max-width: 480px) { .pair { grid-template-columns: 1fr; } .pair .photo { aspect-ratio: 16 / 10; } }
+
+  /* Photo placeholders: the figure shows a label until a real image loads on top of it */
+  .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 2rem; }
+  .photo {
+    position: relative; margin: 0; background: #C9D6CE; aspect-ratio: 4 / 3; overflow: hidden;
+    display: grid; place-items: center; color: #55695C; font-size: 0.9rem;
+  }
+  .photo.wide { grid-column: 1 / -1; aspect-ratio: 16 / 8; }
+  .photo.framed { box-shadow: 0 10px 24px -10px rgba(39, 51, 58, 0.45); }
+  .photo.framed::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    box-shadow:
+      inset 0 0 0 9px var(--chalk),
+      inset 0 0 0 11px var(--down);
+  }
+  .photo::before { content: "Add photo: images/" attr(data-file); }
+  .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  dl.facts { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.6rem 2rem; }
+  dl.facts dt { font-weight: 600; }
+  dl.facts dd { margin: 0; overflow-wrap: anywhere; }
+  @media (max-width: 480px) {
+    dl.facts { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    dl.facts dd { margin-bottom: 0.75rem; }
+  }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 3rem; }
+  @media (max-width: 640px) { .split { grid-template-columns: 1fr; } }
+  .stack > * + * { margin-top: 2.25rem; }
+
+  /* Ruled lists for things to do and places to stay */
+  .rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--flint); }
+  .rows li {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.25rem 2rem;
+    padding: 1.1rem 0; border-bottom: 1px solid var(--line);
+  }
+  .rows h3 { font-size: 1.2rem; margin: 0; }
+  .rows p { margin: 0.2rem 0 0; font-size: 1rem; }
+  .rows .meta { text-align: right; font-size: 0.95rem; color: #43525A; white-space: nowrap; }
+  .rows .meta a { font-weight: 600; color: var(--flint); }
+  @media (max-width: 560px) {
+    .rows li { grid-template-columns: 1fr; }
+    .rows .meta { text-align: left; white-space: normal; }
+  }
+  .group-title { font-family: var(--serif); font-size: 1.5rem; margin: 2.5rem 0 0.9rem; }
+  .group-title:first-child { margin-top: 0; }
+
+  /* ---------- RSVP ---------- */
+  #rsvp { background: var(--down); color: var(--chalk); }
+  #rsvp .intro p { color: #DCE5E1; }
+  #rsvp a { color: var(--chalk); }
+  form { display: grid; gap: 1.25rem; max-width: 34rem; }
+  label, legend { font-weight: 600; display: block; margin-bottom: 0.35rem; }
+  .hint { font-weight: 400; font-size: 0.9rem; color: #DCE5E1; }
+  input[type="text"], input[type="email"], input[type="number"], textarea {
+    width: 100%; padding: 0.7rem 0.85rem;
+    font: inherit; color: var(--flint); background: var(--chalk);
+    border: 2px solid transparent; border-radius: 4px;
+  }
+  textarea { min-height: 6rem; resize: vertical; }
+  fieldset { border: 0; padding: 0; margin: 0; }
+  .choices { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .choices label {
+    display: flex; align-items: center; gap: 0.6rem; margin: 0;
+    padding: 0.7rem 1rem; border: 2px solid var(--chalk); border-radius: 999px; cursor: pointer; font-weight: 500;
+  }
+  .choices input { accent-color: var(--gorse); width: 1.1rem; height: 1.1rem; }
+  .choices label:has(input:checked) { background: var(--chalk); color: var(--flint); }
+  .hp { position: absolute; left: -9999px; }
+  #rsvp .button { justify-self: start; border-color: var(--chalk); }
+  #rsvp .button:hover { background: var(--chalk); color: var(--flint); }
+  .status { min-height: 1.5rem; font-weight: 600; }
+
+  footer { padding: 2rem 1.5rem; text-align: center; font-size: 0.95rem; color: #43525A; }
+  footer p { margin: 0 auto; }
+
+  .photo.tall { aspect-ratio: 4 / 5; }
+  .strip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin: 0 auto 0.6rem; max-width: 30rem; }
+  .cap { font-size: 0.9rem; color: #43525A; margin: 0 0 1rem; text-align: center; }
+
+  /* Walking sketch and route steps */
+  .sketch { margin: 0 0 1.75rem; max-width: 34rem; }
+  .sketch svg { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+  .sketch figcaption { font-size: 0.9rem; color: #43525A; margin-top: 0.5rem; }
+  ol.route { list-style: none; margin: 0 0 1rem; padding: 0; counter-reset: stop; }
+  ol.route li { counter-increment: stop; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.75rem; margin-bottom: 1.25rem; }
+  ol.route li::before {
+    content: counter(stop); width: 2rem; height: 2rem; border-radius: 50%;
+    display: grid; place-items: center; margin-top: 0.1rem;
+    background: var(--gorse); border: 2px solid var(--flint); font-weight: 700; font-size: 0.95rem;
+  }
+  ol.route h3 { font-size: 1.15rem; margin-bottom: 0.2rem; }
+  ol.route p { margin: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .sun, .sun-portrait { animation: none; }
+  }
+</style>
+</head>
+
+<body>
+
+<nav class="nav" aria-label="Page sections">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Ari &amp; Rob</a>
+    <ul>
+      <li><a href="#location">Location</a></li>
+      <li><a href="#getting-there">Getting there</a></li>
+      <li><a href="#things-to-do">Things to do</a></li>
+      <li><a href="#stay">Places to stay</a></li>
+      <li><a href="#dress-gifts">Details</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-text">
+    <h1>Ari<br>&amp; Rob</h1>
+    <p class="hero-meta"><strong>Saturday 12 June 2027</strong><br>The Half Moon, Plumpton, on the South Downs</p>
+    <a class="button" href="#rsvp">RSVP by 12 March 2027</a>
+  </div>
+
+  <!-- Our photo is the sun: it rises from behind the hills once, on page load -->
+  <div class="sun-portrait"><img src="images/us-2.jpg" alt="The two of us smiling in the evening light beside an apple tree" onerror="this.remove()"></div>
+
+  <!-- Rolling downland -->
+  <svg class="hills" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+    <path d="M0 250 C 180 170, 340 190, 520 245 S 860 300, 1060 230 S 1320 170, 1440 215 L1440 420 L0 420 Z" fill="#C3D3C8"/>
+    <path d="M0 300 C 200 240, 380 260, 560 305 S 900 345, 1120 285 S 1340 250, 1440 280 L1440 420 L0 420 Z" fill="#8FAA96"/>
+    <path d="M0 350 C 240 310, 420 320, 640 355 S 1000 385, 1200 340 S 1380 320, 1440 335 L1440 420 L0 420 Z" fill="#4E6B55"/>
+    <path d="M0 395 C 260 372, 520 385, 760 400 S 1200 410, 1440 385 L1440 420 L0 420 Z" fill="#F5F6F1"/>
+  </svg>
+</header>
+
+<main>
+
+  <!-- ================= WELCOME ================= -->
+  <section id="welcome">
+    <div class="wrap">
+      <figure class="arch"><img src="images/us-1.jpg" alt="The two of us on a rocky shore with our corgi and West Highland terrier, a castle and a loch behind us" onerror="this.parentNode.remove()"></figure>
+      <div class="welcome-text">
+        <h2>Welcome</h2>
+        <p>We are excited to invite you to our wedding party! The event will be at Plumpton, a beautiful small village in the South Downs. We are looking forward to having a beautiful summer day with all of you!</p>
+        <h3 class="group-title">The weekend</h3>
+        <ul class="days">
+          <li>
+            <div class="when"><strong>Thursday</strong><span>10 June</span></div>
+            <p>Walk the Arundel loop, past the castle and Swanbourne Lake, with a stop at <a href="https://www.theblackrabbitarundel.co.uk/">the Black Rabbit</a> on the river. Finish with pizza at the Norfolk Tap. Prefer not to do the full loop? Just enjoy Arundel Castle and meet us at the Norfolk Tap. <a href="https://www.alltrails.com/trail/england/west-sussex/arundel-and-arundel-castle-circular">AllTrails loop</a>.</p>
+          </li>
+          <li>
+            <div class="when"><strong>Friday</strong><span>11 June</span></div>
+            <p>Walk around Brighton Promenade, the little shops in the Lanes, Brighton Dome, and the Pavilion Gardens, with a tour by Ari. We will end the day at a pub.</p>
+          </li>
+          <li class="wedding">
+            <div class="when"><strong>Saturday</strong><span>12 June</span></div>
+            <p>The wedding at the Half Moon in Plumpton. <a href="#location">Details</a>.</p>
+          </li>
+          <li>
+            <div class="when"><strong>Sunday</strong><span>13 June</span></div>
+            <p>A delicious Sunday Roast.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LOCATION ================= -->
+  <section id="location">
+    <div class="wrap">
+      <div class="intro">
+        <h2>Location</h2>
+        <p>We are celebrating outdoors at the Half Moon, a country pub in Plumpton at the foot of the South Downs, a few miles from Lewes. It has local Sussex ales and wines made by neighbours at Plumpton College, and the South Downs Way just up the road.</p>
+      </div>
+      <div>
+        <div class="gallery">
+          <figure class="photo wide framed" data-file="venue-1.jpg"><img src="images/venue-1.jpg" alt="Sheep and lambs grazing in a field below the South Downs" style="object-position: 50% 35%" onerror="this.remove()"></figure>
+          <figure class="photo framed" data-file="venue-2.jpg"><img src="images/venue-2.jpg" alt="A corgi on the grass beside picnic benches and a swing set" onerror="this.remove()"></figure>
+          <figure class="photo framed" data-file="todo-3.jpg"><img src="images/todo-3.jpg" alt="Our West Highland terrier on a grassy downland path" style="object-position: 50% 18%" onerror="this.remove()"></figure>
+        </div>
+        <dl class="facts">
+          <dt>Address</dt><dd>The Half Moon, Ditchling Road, Plumpton, East Sussex, BN7 3AF</dd>
+          <dt>Date</dt><dd>Saturday 12 June 2027</dd>
+          <dt>Time</dt><dd>1pm – 11pm</dd>
+          <dt>Camping</dt><dd>On site for guests. See <a href="#stay">Places to stay</a></dd>
+          <dt>Venue website</dt><dd><a href="https://www.thehalfmoonplumpton.co.uk/">thehalfmoonplumpton.co.uk</a></dd>
+        </dl>
+
+        <h3 class="group-title">A stroll from the pub</h3>
+        <p>A short walk to see the college animals and an old church.</p>
+
+        <figure class="sketch">
+          <svg viewBox="0 0 520 436" role="img" aria-labelledby="sketch-title sketch-desc" xmlns="http://www.w3.org/2000/svg">
+            <title id="sketch-title">Sketch map of a short walk from the Half Moon</title>
+            <desc id="sketch-desc">Not to scale. From the pub, a footpath leads to Plumpton College, where sheep, llamas and birds can be seen, and on to the old church.</desc>
+            <rect width="520" height="436" fill="#F5F6F1"/>
+
+            <path d="M0 0H520V96C440 66 372 58 300 74S110 100 0 82Z" fill="#C3D3C8"/>
+            <path d="M16 54C120 42 200 36 292 46S430 52 504 38" fill="none" stroke="#3D5A45" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 8"/>
+            <text x="262" y="26" text-anchor="middle" font-size="15" font-weight="600" fill="#27333A">South Downs Way</text>
+
+            <path id="road" d="M0 172C140 152 300 186 520 160" fill="none" stroke="#DDE4DF" stroke-width="20"/>
+            <text font-size="13" fill="#55695C" dy="4"><textPath href="#road" startOffset="64%">Ditchling Road</textPath></text>
+
+            <circle cx="262" cy="226" r="26" fill="#27333A"/>
+            <circle cx="262" cy="226" r="15" fill="#E2B22E"/>
+            <circle cx="269" cy="222" r="13" fill="#27333A"/>
+            <text x="296" y="222" font-size="15" font-weight="700" fill="#27333A">The Half Moon</text>
+
+            <rect x="16" y="296" width="262" height="126" rx="16" fill="#E4ECE7" stroke="#9DB0A3" stroke-dasharray="5 5"/>
+            <text x="30" y="318" font-size="13" fill="#55695C">Plumpton College</text>
+            <path d="M248 248C222 280 198 316 174 340S112 362 84 368" fill="none" stroke="#27333A" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/>
+            <circle cx="176" cy="338" r="11" fill="#E2B22E" stroke="#27333A" stroke-width="2"/>
+            <text x="176" y="343" text-anchor="middle" font-size="14" font-weight="700" fill="#27333A">1</text>
+            <circle cx="108" cy="360" r="11" fill="#E2B22E" stroke="#27333A" stroke-width="2"/>
+            <text x="108" y="365" text-anchor="middle" font-size="14" font-weight="700" fill="#27333A">2</text>
+
+            <g transform="translate(200 374)"><ellipse rx="12" ry="9" fill="#FFFFFF" stroke="#27333A" stroke-width="1.5"/><circle cx="13" cy="-2" r="4.5" fill="#27333A"/><path d="M-5 8v6M5 8v6" stroke="#27333A" stroke-width="1.5" stroke-linecap="round"/></g>
+            <g transform="translate(236 386)"><ellipse rx="12" ry="9" fill="#FFFFFF" stroke="#27333A" stroke-width="1.5"/><circle cx="13" cy="-2" r="4.5" fill="#27333A"/><path d="M-5 8v6M5 8v6" stroke="#27333A" stroke-width="1.5" stroke-linecap="round"/></g>
+            <g transform="translate(236 354)"><ellipse rx="11" ry="7" fill="#F0E6D2" stroke="#27333A" stroke-width="1.5"/><path d="M8 -4L13 -22" stroke="#27333A" stroke-width="5.5" stroke-linecap="round"/><path d="M8 -4L13 -22" stroke="#F0E6D2" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="16" cy="-24" rx="6" ry="4" fill="#F0E6D2" stroke="#27333A" stroke-width="1.5"/><path d="M-5 6v9M5 6v9" stroke="#27333A" stroke-width="1.5" stroke-linecap="round"/></g>
+            <path d="M222 316q4-5 8 0q4-5 8 0" fill="none" stroke="#27333A" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M246 324q4-5 8 0q4-5 8 0" fill="none" stroke="#27333A" stroke-width="1.5" stroke-linecap="round"/>
+            <text x="148" y="413" font-size="13" fill="#55695C">Sheep, llamas, birds</text>
+
+            <g transform="translate(58 374)"><rect x="-10" y="-2" width="20" height="14" fill="#F5F6F1" stroke="#27333A" stroke-width="1.5"/><path d="M-12 -2L0 -14L12 -2Z" fill="#27333A"/><path d="M0 -14V-22M-3 -19H3" stroke="#27333A" stroke-width="1.5"/></g>
+            <text x="30" y="411" font-size="13" fill="#55695C">Old church</text>
+          </svg>
+        </figure>
+
+        <ol class="route">
+          <li><div><h3>The college animals</h3><p>From the pub, follow the footpath towards Plumpton College, which farms the land at the foot of the Downs. Look out for sheep, llamas and birds. It is a working college, so keep to the public footpath.</p></div></li>
+          <li><div><h3>The old church</h3><p>It stands within the college grounds. It is a medieval church with old wall paintings inside; it may not always be open. Then wander back to the pub, where the bar stocks wine from the college’s own vineyard.</p></div></li>
+        </ol>
+
+        <div class="strip">
+          <figure class="photo tall" data-file="walk-2.jpg"><img src="images/walk-2.jpg" alt="Wisteria in flower on the college wall, with a corgi in the foreground" loading="lazy" style="object-position: 60% 50%" onerror="this.remove()"></figure>
+          <figure class="photo tall" data-file="walk-4.jpg"><img src="images/walk-4.jpg" alt="A small white dog on a chalk path beneath the roots of a big beech tree" loading="lazy" style="object-position: 50% 70%" onerror="this.remove()"></figure>
+        </div>
+        <p class="cap">From our own walks around the Downs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GETTING THERE ================= -->
+  <section id="getting-there">
+    <div class="wrap">
+      <div class="intro">
+        <h2>Getting there</h2>
+        <p><a class="button" href="https://maps.app.goo.gl/5oLckNmdwje1oMSm9">Open in Google Maps</a></p>
+        <div class="banner-tall">
+          <figure class="photo framed" data-file="dress-2.jpg"><img src="images/dress-2.jpg" alt="The two of us smiling close together outdoors" loading="lazy" style="object-position: 50% 8%" onerror="this.remove()"></figure>
+        </div>
+        <div class="note">
+          <svg width="34" height="34" viewBox="0 0 48 40" fill="none" style="stroke: var(--down); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round" aria-hidden="true">
+            <rect x="3" y="5" width="38" height="22" rx="4"/>
+            <line x1="3" y1="20" x2="41" y2="20"/>
+            <rect x="7" y="9" width="8" height="7" rx="1"/>
+            <rect x="18" y="9" width="8" height="7" rx="1"/>
+            <rect x="29" y="9" width="8" height="7" rx="1"/>
+            <circle cx="12" cy="31" r="4" fill="var(--flint)" stroke="none"/>
+            <circle cx="32" cy="31" r="4" fill="var(--flint)" stroke="none"/>
+          </svg>
+          <p>We might have a shuttle back from the venue to Brighton!</p>
+        </div>
+      </div>
+      <div class="stack">
+        <div>
+          <h3>By train</h3>
+          <p>Direct trains run from London Victoria to Lewes in just over an hour, and from Brighton the journey to Lewes takes around 15 minutes. <a href="https://www.southernrailway.com/journey/london-victoria-to-lewes">Check times from London Victoria</a>. Lewes is a short taxi ride from the pub. The nearest station, Plumpton, is about two miles away, but Lewes has the most trains. Buses are also available; see below.</p>
+        </div>
+        <div>
+          <h3>By bus</h3>
+          <p>Compass Travel buses 166 and 167 run from Lewes and stop at Plumpton College, a short walk from the pub. They are infrequent, so check the times before you rely on them. <a href="https://bustimes.org/localities/plumpton-e-sussex">Bus times for Plumpton</a>.</p>
+        </div>
+        <div>
+          <h3>By car</h3>
+          <p>Use the postcode BN7 3AF. The pub is on Ditchling Road. Parking available at the venue.</p>
+        </div>
+        <div>
+          <h3>Coming from abroad to Brighton</h3>
+          <p>The easiest routes are by air or by Eurostar, then by train. The <a href="https://www.thetrainline.com/">Trainline</a> app is a good way to book your UK train tickets.</p>
+          <p><strong>By air:</strong> fly to London Gatwick, take a train to Brighton (about 30 minutes). You can also fly to Heathrow: a National Express coach (route 025) runs from Heathrow to Brighton in about two hours. <a href="https://www.nationalexpress.com/en/destinations/brighton/heathrow-to-brighton">Heathrow to Brighton coaches</a>.</p>
+          <p><strong>By Eurostar:</strong> arrive at London St Pancras International (King’s Cross is next door) and take a direct train to Brighton, which takes around an hour and a half.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THINGS TO DO ================= -->
+  <section id="things-to-do" class="tint">
+    <div class="wrap">
+      <div class="intro">
+        <h2>Things to do</h2>
+        <p>Making a weekend of it? Pick from our favourite places on the Downs and along the coast.</p>
+        <div class="banner">
+          <figure class="photo framed" data-file="todo-1.jpg" style="aspect-ratio: 4 / 3;"><img src="images/todo-1.jpg" alt="The two of us smiling on a windy walk across the Downs" loading="lazy" onerror="this.remove()"></figure>
+        </div>
+      </div>
+      <div>
+
+        <h3 class="group-title">Things to do in Brighton</h3>
+        <ul class="rows">
+          <li>
+            <div><h3>Brighton Beach &amp; Palace Pier</h3><p>The classic pebble beach, with a fairground pier for an ice cream or a go on the arcades.</p></div>
+            <div class="meta">Free to walk<br><a href="https://www.visitbrighton.com/things-to-do">Visit Brighton</a></div>
+          </li>
+          <li>
+            <div><h3>The Lanes &amp; North Laine</h3><p>Narrow lanes packed with independent shops, cafes and vintage finds. Easy to lose an afternoon in.</p></div>
+            <div class="meta">Free to browse</div>
+          </li>
+          <li>
+            <div><h3>Royal Pavilion &amp; Gardens</h3><p>The former royal palace's lavish, Indo-Saracenic rooms are worth the ticket price, with gardens to wander outside.</p></div>
+            <div class="meta">Ticketed<br><a href="https://brightonmuseums.org.uk/royalpavilion/">Royal Pavilion &amp; Gardens</a></div>
+          </li>
+          <li>
+            <div><h3>Stanmer Park &amp; One Garden</h3><p>A green valley on the edge of Brighton, with woodland walks and Stanmer House. One Garden Brighton is a free walled garden run by Plumpton College.</p></div>
+            <div class="meta">Free entry<br><a href="https://onegardenbrighton.com/">One Garden Brighton</a></div>
+          </li>
+          <li>
+            <div><h3>Restaurants &amp; pubs</h3><p>A few favourites: the Lion &amp; Lobster (try the sticky toffee pudding), an old Brighton pub with a roof terrace; Bincho Yakitori, Japanese skewers on Preston Street; Palmito, a tiny Latin American spot on Western Road; No Catch, vegan fish and chips on King's Road by the seafront; Captain's Fish and Chips, a classic fish and chip restaurant on the seafront by the Palace Pier; Lucky Beach, a relaxed beachfront café and bar on the King's Road Arches; Moksha Caffe, a cosy brunch spot near York Place; Oeuf, an all-day brunch café in Hove, steps from the seafront; the Garden Café in St Ann's Well Gardens in Hove; and Fiddler's Elbow, a lively Irish pub in the Lanes with live music.</p></div>
+            <div class="meta"><a href="https://thelionandlobster.co.uk/">Lion &amp; Lobster</a><br><a href="https://www.binchoyakitori.com/">Bincho Yakitori</a><br><a href="https://www.palmito.co.uk/">Palmito</a><br><a href="https://www.nocatch.co/">No Catch</a><br><a href="https://www.google.com/maps/search/?api=1&amp;query=Captains+Fish+and+Chips+9+Lower+Promenade+Brighton">Captain's Fish and Chips</a><br><a href="https://www.luckybeach.co.uk/">Lucky Beach</a><br><a href="https://www.opentable.co.uk/r/moksha-caffe">Moksha Caffe</a><br><a href="https://oeuf.cafe/">Oeuf</a><br><a href="https://www.google.com/maps/search/?api=1&amp;query=The+Garden+Cafe+St+Anns+Well+Gardens+Hove">Garden Café</a><br><a href="https://www.google.com/maps/search/?api=1&amp;query=Fiddler%27s+Elbow+11+Boyces+Street+Brighton">Fiddler's Elbow</a></div>
+          </li>
+        </ul>
+
+        <h3 class="group-title">Day trips from Brighton</h3>
+        <ul class="rows">
+          <li>
+            <div><h3>Ditchling Beacon</h3><p>The highest point in East Sussex, 248 metres up, with views across the Weald and out to the Channel. Walk along the ridge or head down to Stanmer.</p></div>
+            <div class="meta">Breeze bus 79<br>Mostly weekends and bank holidays<br><a href="https://www.buses.co.uk/ditchling-beacon">Bus info</a></div>
+          </li>
+          <li>
+            <div><h3>Devil’s Dyke</h3><p>A huge dry valley cut into the Downs above Brighton, with views for miles. Walk down for a pub lunch at the Shepherd and Dog in Fulking (about a mile) or the Royal Oak in Poynings.</p></div>
+            <div class="meta">Breeze bus 77, about 35 min<br><a href="https://www.buses.co.uk/services/BH/77">Timetable</a></div>
+          </li>
+          <li>
+            <div><h3>Lewes</h3><p>Historic county town with a hilltop castle, steep cobbled streets, independent shops and Harvey’s Brewery.</p></div>
+            <div class="meta">Train from Brighton,<br>about 15 min</div>
+          </li>
+          <li>
+            <div><h3>Arundel</h3><p>Castle, cathedral and riverside. AllTrails has an easy loop from the town past the castle, Swanbourne Lake and the wetland centre.</p></div>
+            <div class="meta">Train from Brighton,<br>one change, about an hour<br><a href="https://www.alltrails.com/trail/england/west-sussex/arundel-and-arundel-castle-circular">AllTrails loop</a></div>
+          </li>
+          <li>
+            <div><h3>Seven Sisters</h3><p>The chalk cliffs along the coast near Seaford, with a classic walk from Cuckmere Haven. Good for a windswept afternoon.</p></div>
+            <div class="meta">Coaster bus 12/12A/13X<br><a href="https://scenicbuses.co.uk/routes/brighton-coasters/">Timetable</a></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PLACES TO STAY ================= -->
+  <section id="stay">
+    <div class="wrap">
+      <div class="intro">
+        <h2>Places to stay</h2>
+        <p>June weekends book up early in this area, so reserve as soon as you know your plans.</p>
+        <div class="banner-tall">
+          <figure class="photo framed" data-file="todo-2.jpg"><img src="images/todo-2.jpg" alt="Looking out over the Downs at dusk with the moon rising, a corgi on the lead" loading="lazy" onerror="this.remove()"></figure>
+        </div>
+      </div>
+      <div>
+        <ul class="rows">
+          <li>
+            <div><h3>Brighton</h3><p>Plenty of hotels and rentals, and the base for the day trips above. The seafront and city centre have plenty of hotels and Airbnbs.</p></div>
+            <div class="meta">About 12 miles from the Half Moon (19 km)<br>26 minutes by car<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Brighton">Brighton on Google Maps</a></div>
+          </li>
+          <li>
+            <div><h3>Lewes</h3><p>Lewes is an historic county town with a hilltop castle, steep cobbled streets and independent shops, a short taxi ride from the pub.</p></div>
+            <div class="meta">About 6 miles from the Half Moon (10 km)<br>15 minutes by car<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Lewes+East+Sussex">Lewes on Google Maps</a></div>
+          </li>
+          <li>
+            <div><h3>Camp at the venue</h3><p>Pitch a tent on the grounds and wake up where the party was. Please book with our special link. There will be 4 x hardstanding pitches (campervans are allowed) and 5 camping pitches (for tents).</p></div>
+            <div class="meta">Soon</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DRESS CODE & GIFTS ================= -->
+  <section id="dress-gifts" class="tint">
+    <div class="wrap">
+      <h2 style="grid-column: 1 / -1; margin-bottom: 0.5rem;">Details</h2>
+      <div class="intro">
+        <figure class="bubble" data-file="dress-1.jpg"><img src="images/dress-1.jpg" alt="The two of us having a pub lunch outdoors, wrapped up warm with a roast dinner and a pint" loading="lazy" style="object-position: 100% 40%" onerror="this.parentNode.remove()"></figure>
+      </div>
+      <div class="stack">
+        <div>
+          <h3>Dress Code</h3>
+          <p>The ceremony and lunch will be inside a marquee in the gardens. However, it is surrounded by grass, so dress comfortably. We just want everyone to have a good and relaxed time, so come as you wish!</p>
+        </div>
+        <div>
+          <h3>Gifts</h3>
+          <p>Honestly, we have everything we need. And some of you already gave us generous gifts! We do not expect anything, except your presence :). If you are still not convinced, you can reach out to us for a small contribution to our honeymoon. But again, gifts are really not required!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RSVP ================= -->
+  <!--
+    GitHub Pages is static, so a form needs somewhere to send its answers. Two easy options:
+
+    A) Formspree (used below): make a free form at formspree.io, copy its ID, and replace
+       YOUR_FORM_ID in the action attribute. Replies arrive by email.
+
+    B) Google Forms: build the form there, then delete the <form> below and replace it with a button:
+       <a class="button" href="https://forms.gle/your-link">RSVP online</a>
+  -->
+  <section id="rsvp">
+    <div class="wrap">
+      <div class="intro">
+        <h2>RSVP</h2>
+        <p>Please reply by <strong>12 March 2027</strong> so we can plan food and space.</p>
+      </div>
+
+      <form id="rsvp-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="hidden" name="_subject" value="New wedding RSVP">
+        <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+
+        <div>
+          <label for="names">Your name(s)</label>
+          <input id="names" name="names" type="text" required autocomplete="name">
+          <span class="hint">Include anyone you are replying on behalf of.</span>
+        </div>
+
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email">
+        </div>
+
+        <div id="attending-details" style="display: grid; gap: 1.25rem;">
+          <div>
+            <label for="count">How many adults are coming?</label>
+            <input id="count" name="count" type="number" min="1" max="10" value="1">
+          </div>
+          <div>
+            <label for="kids">How many children?</label>
+            <input id="kids" name="kids" type="number" min="0" max="10" value="0">
+          </div>
+          <div class="choices">
+            <label><input type="checkbox" name="shuttle" value="Yes"> Would you be interested in a shuttle back from the venue to Brighton?</label>
+          </div>
+          <fieldset>
+            <legend>Would you like to be added to the party WhatsApp group?</legend>
+            <div class="choices">
+              <label><input type="radio" name="whatsapp_group" value="Yes"> Yes</label>
+              <label><input type="radio" name="whatsapp_group" value="No"> No</label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Will you stay for the Sunday Roast?</legend>
+            <div class="choices">
+              <label><input type="radio" name="sunday_roast" value="Yes"> Yes</label>
+              <label><input type="radio" name="sunday_roast" value="No"> No</label>
+              <label><input type="radio" name="sunday_roast" value="Don't know yet"> Don't know yet</label>
+            </div>
+          </fieldset>
+          <div>
+            <label for="diet">Dietary requirements or allergies <span class="hint">(the meals will be fully vegetarian)</span></label>
+            <textarea id="diet" name="dietary"></textarea>
+          </div>
+          <div>
+            <label for="song">A song that will get you on the dance floor</label>
+            <input id="song" name="song" type="text">
+          </div>
+        </div>
+
+        <div>
+          <label for="message">Anything else?</label>
+          <textarea id="message" name="message"></textarea>
+        </div>
+
+        <button class="button" type="submit">Send RSVP</button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+</footer>
+
+<script>
+  // Highlight the current section in the menu
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav li a'));
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    if (!('IntersectionObserver' in window)) return;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && byId[entry.target.id]) {
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          byId[entry.target.id].setAttribute('aria-current', 'true');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  })();
+
+  // Hide guest details if they can't come; send the RSVP without leaving the page
+  (function () {
+    var form = document.getElementById('rsvp-form');
+    var details = document.getElementById('attending-details');
+    var status = document.getElementById('status');
+
+    form.addEventListener('change', function () {
+      var choice = form.querySelector('input[name="attending"]:checked');
+      details.style.display = (choice && choice.value === 'No') ? 'none' : 'grid';
+    });
+
+    form.addEventListener('submit', function (event) {
+      if (form.action.indexOf('YOUR_FORM_ID') !== -1) {
+        event.preventDefault();
+        status.textContent = 'The RSVP form is not connected yet. Add your Formspree ID in index.html.';
+        return;
+      }
+      if (!window.fetch) return; // falls back to a normal form submit
+      event.preventDefault();
+      status.textContent = 'Sending...';
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          form.reset();
+          details.style.display = 'grid';
+          status.textContent = 'Thank you! Your RSVP has been sent.';
+        } else {
+          status.textContent = 'That did not send. Please try again, or email us directly.';
+        }
+      }).catch(function () {
+        status.textContent = 'That did not send. Please check your connection and try again.';
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
